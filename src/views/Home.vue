@@ -2,6 +2,8 @@
 	<div class="home">
 		<!-- vuex basics -->
 		<div>points: {{ points }}</div>
+		<button @click="updatePoints(1)">Add a point</button>
+		<button @click="updatePoints(-1)">remove a point</button>
 
 		<div v-for="blog in blogs" :key="blog.id">
 			<div class="blog">
@@ -37,7 +39,11 @@
 				blogs,
 			};
 		},
-		methods: {},
+		methods: {
+			updatePoints(points) {
+				this.$store.commit('updatePoints', points);
+			},
+		},
 		computed: {
 			points() {
 				return this.$store.state.points;
